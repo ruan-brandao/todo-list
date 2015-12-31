@@ -39,6 +39,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails', '~> 4.5'
   gem 'capybara', '~> 2.5'
+end
+
+group :test do
+	gem 'shoulda-matchers', '~> 3.0', '>= 3.0.1'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 end
 
