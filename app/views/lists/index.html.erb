@@ -1,0 +1,5 @@
+<% @lists.each do |list| %>
+  <%= list.name %><br>
+  <%= list.user.email %><br>
+  <%= list_management(list) %><br>
+<% end %>
