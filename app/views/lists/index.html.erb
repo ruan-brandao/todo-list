@@ -1,5 +1,5 @@
 <% @lists.each do |list| %>
-  <%= list.name %><br>
+  <%= link_to list.name, list %><br>
   <%= list.user.email %><br>
   <%= list_management(list) %><br>
 <% end %>

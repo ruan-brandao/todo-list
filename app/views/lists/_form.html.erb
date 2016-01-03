@@ -5,5 +5,15 @@
   <%= f.label :public %>
   <%= f.check_box :public %><br>
 
+  <h2>Tasks</h2>
+  <%= f.fields_for :tasks do |task| %>
+    <%= task.label :done %>
+    <%= task.check_box :done %>
+    <%= task.label :text %>
+    <%= task.text_field :text %>
+    <%= task.label :_destroy %>
+    <%= task.check_box :_destroy %><br>
+  <% end %>
+
   <%= f.submit %>
 <% end %>
