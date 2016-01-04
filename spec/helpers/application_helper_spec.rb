@@ -10,7 +10,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
 
       it "calls link_to with 'Sign out'" do
-        expect(helper).to receive(:link_to).with("Sign out", "/users/sign_out", {:method=>:delete, :class=>"btn btn-default navbar-btn"})
+        expect(helper).to receive(:link_to).with("Sign out", "/users/sign_out", method: :delete, class: "btn btn-default navbar-btn")
 
         helper.login_options
       end
@@ -22,7 +22,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
 
       it "calls link_to with 'Sign in'" do
-        expect(helper).to receive(:link_to).with("Sign in", "/users/sign_in", {:class=>"btn btn-default navbar-btn"})
+        expect(helper).to receive(:link_to).with("Sign in", "/users/sign_in", class: "btn btn-default navbar-btn")
 
         helper.login_options
       end
