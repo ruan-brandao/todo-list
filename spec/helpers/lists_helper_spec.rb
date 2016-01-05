@@ -45,4 +45,31 @@ RSpec.describe ListsHelper, type: :helper do
       helper.new_list_button
     end
   end
+
+  describe "#edit_button_for" do
+    it "returns nil without a user signed in" do
+      allow(helper).to receive(:user_signed_in?).and_return(false)
+
+      expect(helper.edit_button_for(list)).to be_nil
+    end
+
+    context "with a user signed in" do
+      before do
+        allow(helper).to receive(:user_signed_in?).and_return(true)
+      end
+
+      it "returns nil when the current user did not create the list" do
+        user = FactoryGirl.create(:user)
+        allow(helper).to receive(:current_user).and_return(user)
+
+        expect(helper.edit_button_for(list)).to be_nil
+      end
+
+      it "returns a link_to when the current user did create the list" do
+        allow(helper).to receive(:current_user).and_return(list.user)
+
+        expect(helper.edit_button_for(list)).not_to be_nil
+      end
+    end
+  end
 end
