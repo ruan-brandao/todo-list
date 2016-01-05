@@ -1,5 +1,11 @@
-<% @lists.each do |list| %>
-  <%= link_to list.name, list %><br>
-  <%= list.user.email %><br>
-  <%= list_management(list) %><br>
-<% end %>
+<div class="lists">
+  <% @lists.each do |list| %>
+    <div id="<%= dom_id list %>">
+      <%= link_to list.name, list, class: "list-name" %><br>
+      <%= list.user.email %><br>
+      <%= list_management(list) %><br>
+    </div>
+  <% end %>
+</div>
+
+<%= new_list_button %>

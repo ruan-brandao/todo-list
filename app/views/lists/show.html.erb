@@ -1,8 +1,15 @@
-<%= @list.name %><br>
-<%= @list.public %><br>
+<h1><%= @list.name %></h1><br>
+<p>
+  <%= check_box "list", "public", { checked: @list.public, disabled: true } %>
+  Public List
+<p><br>
 
 <h2>Tasks</h2>
 <% @list.tasks.each do |task| %>
-  <%= check_box "task", "done", { checked: task.done, disabled: true } %>
-  <%= task.text %><br>
+  <div class="task">
+    <%= check_box "task", "done", { checked: task.done, disabled: true } %>
+    <%= task.text %>
+  </div>
 <% end %>
+
+<%= edit_button_for(@list) %>
