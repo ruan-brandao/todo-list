@@ -1,0 +1,7 @@
+<div class="task">
+  <%= f.label :done %>
+  <%= f.check_box :done %>
+  <%= f.text_field :text, placeholder: "Task" %>
+  <%= f.check_box :_destroy, class: "hidden" %>
+  <a class="destroy-task btn btn-danger">Destroy Task</a>
+</div>
