@@ -7,16 +7,9 @@
 
   <h2>Tasks</h2>
   <%= f.fields_for :tasks do |task| %>
-    <div class="task">
-      <%= task.label :done %>
-      <%= task.check_box :done %>
-      <%= task.text_field :text, placeholder: "Task" %>
-      <div class="destroy-task">
-        Destroy Task
-        <%= task.check_box :_destroy %>
-      </div>
-    </div>
+    <%= render "task", f: task %>
   <% end %>
+  <p><%= link_to_add_fields "Add Answer", f, :tasks %></p>
 
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
