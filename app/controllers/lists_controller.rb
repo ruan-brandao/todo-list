@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite]
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def index
@@ -45,6 +45,23 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     redirect_to lists_url
+  end
+
+  def favorites
+    @lists = current_user.favorites
+  end
+
+  def favorite
+    if current_user.favorite(@list)
+      redirect_to @list, notice: "You favorited this list"
+    else
+      redirect_to @list, alert: "You can't favorite your own list"
+    end
+  end
+
+  def unfavorite
+    current_user.unfavorite(@list)
+    redirect_to @list, notice: "This list is no longer your favorite"
   end
 
   private

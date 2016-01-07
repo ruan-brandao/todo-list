@@ -9,9 +9,10 @@
 <body>
 
 <%= render 'header' %>
-<%= render 'flash_messages' %>
 
 <div class="container">
+  <%= render 'flash_messages' %>
+  
   <%= yield %>
 </div>
 
