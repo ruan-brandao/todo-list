@@ -72,4 +72,28 @@ RSpec.describe ListsHelper, type: :helper do
       end
     end
   end
+
+  describe "#favorite_list_button" do
+    context "with a user signed in" do
+      before do
+        allow(helper).to receive(:user_signed_in?).and_return(true)
+      end
+
+      it "shows 'Unfavorite List' button when the current user favorited the list"
+
+      it "shows 'Favorite List' button when the current user can favorite the list"
+
+      it "returns nil when the current user created the list" do
+        allow(helper).to receive(:current_user).and_return(list.user)
+
+        expect(helper.favorite_list_button(list)).to be_nil
+      end
+    end
+
+    it "returns nil without a signed in user" do
+      allow(helper).to receive(:user_signed_in?).and_return(true)
+
+      expect(helper.favorite_list_button(list)).to be_nil
+    end
+  end
 end

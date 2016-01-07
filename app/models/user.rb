@@ -8,15 +8,23 @@ class User < ActiveRecord::Base
   has_many :favorite_lists
   has_many :favorites, through: :favorite_lists, class_name: "List", source: :list
 
+  def favorited?(list)
+    favorite_lists.find_by(list: list)
+  end
+
+  def can_favorite?(list)
+    ! favorited?(list) && list.user_id != id
+  end
+
   def favorite(list)
-    if list.user_id == id || favorite_lists.find_by(list: list)
-      nil
-    else
+    if can_favorite?(list)
       favorite_lists.create(list: list)
+    else
+      nil
     end
   end
 
   def unfavorite(list)
-    favorite_lists.find_by(list: list).destroy
+      favorite_lists.find_by(list: list).destroy if favorited? list
   end
 end

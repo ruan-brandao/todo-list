@@ -55,7 +55,7 @@ class ListsController < ApplicationController
     if current_user.favorite(@list)
       redirect_to @list, notice: "You favorited this list"
     else
-      redirect_to @list, alert: "You can't favorite your own list"
+      redirect_to @list, alert: "You can't favorite this list"
     end
   end
 
