@@ -3,6 +3,8 @@ class List < ActiveRecord::Base
 
   belongs_to :user
   has_many :tasks, dependent: :destroy
+  has_many :favorite_lists
+  has_many :users_who_favorited, through: :favorite_lists, class_name: "User"
 
   accepts_nested_attributes_for :tasks,
                                 reject_if: proc { |attributes| attributes['text'].blank? },

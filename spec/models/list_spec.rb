@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe List, type: :model do
   it { expect(subject).to belong_to(:user) }
   it { expect(subject).to have_many(:tasks).dependent(:destroy) }
+  it { expect(subject).to have_many(:favorite_lists) }
+  it { expect(subject).to have_many(:users_who_favorited).
+                          through(:favorite_lists).
+                          class_name("User") }
 
   it { expect(subject).to accept_nested_attributes_for(:tasks).allow_destroy(true) }
 
