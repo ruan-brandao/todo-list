@@ -16,11 +16,14 @@ module ListsHelper
   end
 
   def favorite_list_button(list)
-    return nil if user_signed_in? || list.user == current_user
-    if current_user.favorited?(list)
-      link_to("Unfavorite List", "/lists/#{list.id}/unfavorite", class: "btn btn-default")
-    else
+    if user_signed_in? && current_user.can_favorite?(list)
       link_to("Favorite List", "/lists/#{list.id}/favorite", class: "btn btn-default")
+    end
+  end
+
+  def unfavorite_list_button(list)
+    if user_signed_in? && current_user.favorited?(list)
+      link_to("Unfavorite List", "/lists/#{list.id}/unfavorite", class: "btn btn-default")
     end
   end
 end
