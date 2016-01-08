@@ -28,4 +28,20 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe "#favorites_link" do
+    it "returns nil without a signed in user" do
+      allow(helper).to receive(:user_signed_in?).and_return(false)
+
+      expect(helper.favorites_link).to be_nil
+    end
+
+    it "returns a link_to with a signed in user" do
+      allow(helper).to receive(:user_signed_in?).and_return(true)
+
+      expect(helper).to receive(:link_to).with("Favorites", "/favorites", class: "btn btn-default")
+
+      helper.favorites_link
+    end
+  end
 end
