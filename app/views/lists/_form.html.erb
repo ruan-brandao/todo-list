@@ -9,7 +9,7 @@
   <%= f.fields_for :tasks do |task| %>
     <%= render "task", f: task %>
   <% end %>
-  <p><%= link_to_add_fields "Add Answer", f, :tasks %></p>
+  <p><%= link_to_add_fields "Add Task", f, :tasks %></p>
 
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

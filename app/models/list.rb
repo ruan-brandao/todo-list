@@ -13,6 +13,6 @@ class List < ActiveRecord::Base
   validates :name, presence: true
 
   def self.feed_for(user)
-    (self.where(user: user) + self.public_lists).uniq!
+    (self.where(user: user) + self.public_lists).uniq
   end
 end
