@@ -14,4 +14,16 @@ module ListsHelper
       link_to("Edit List", edit_list_path(list), class: "btn btn-primary")
     end
   end
+
+  def favorite_list_button(list)
+    if user_signed_in? && current_user.can_favorite?(list)
+      link_to("Favorite List", "/lists/#{list.id}/favorite", class: "btn btn-default")
+    end
+  end
+
+  def unfavorite_list_button(list)
+    if user_signed_in? && current_user.favorited?(list)
+      link_to("Unfavorite List", "/lists/#{list.id}/unfavorite", class: "btn btn-default")
+    end
+  end
 end

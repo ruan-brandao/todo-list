@@ -72,4 +72,69 @@ RSpec.describe ListsHelper, type: :helper do
       end
     end
   end
+
+  describe "#favorite_list_button" do
+    it "returns nil without a user signed in" do
+      allow(helper).to receive(:user_signed_in?).and_return(false)
+
+      expect(helper.favorite_list_button(list)).to be_nil
+    end
+
+    context "with a user signed_in" do
+      before do
+        allow(helper).to receive(:user_signed_in?).and_return(true)
+
+      end
+
+      it "returns nil when the current user cannot favorite the list" do
+        user = FactoryGirl.create(:user)
+        allow(helper).to receive(:current_user).and_return(user)
+        allow(user).to receive(:can_favorite?).with(list).and_return(false)
+
+        expect(helper.favorite_list_button(list)).to be_nil
+      end
+
+      it "returns a link_to when the current user can favorite the list" do
+        user = FactoryGirl.create(:user)
+        allow(helper).to receive(:current_user).and_return(user)
+        allow(user).to receive(:can_favorite?).with(list).and_return(true)
+
+        expect(helper).to receive(:link_to).with("Favorite List", "/lists/#{list.id}/favorite", class: "btn btn-default")
+
+        helper.favorite_list_button(list)
+      end
+    end
+  end
+
+  describe "#unfavorite_list_button" do
+    it "returns nil without a user signed in" do
+      allow(helper).to receive(:user_signed_in?).and_return(false)
+
+      expect(helper.favorite_list_button(list)).to be_nil
+    end
+
+    context "with a user signed_in" do
+      before do
+        allow(helper).to receive(:user_signed_in?).and_return(true)
+      end
+
+      it "returns nil when the current user didn't favorite the list" do
+        user = FactoryGirl.create(:user)
+        allow(helper).to receive(:current_user).and_return(user)
+        allow(user).to receive(:favorited?).with(list).and_return(false)
+
+        expect(helper.unfavorite_list_button(list)).to be_nil
+      end
+
+      it "returns a link_to when the current user favorited the list" do
+        user = FactoryGirl.create(:user)
+        allow(helper).to receive(:current_user).and_return(user)
+        allow(user).to receive(:favorited?).with(list).and_return(true)
+
+        expect(helper).to receive(:link_to).with("Unfavorite List", "/lists/#{list.id}/unfavorite", class: "btn btn-default")
+
+        helper.unfavorite_list_button(list)
+      end
+    end
+  end
 end

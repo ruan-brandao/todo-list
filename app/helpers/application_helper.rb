@@ -14,4 +14,10 @@ module ApplicationHelper
     end
     link_to name, "#", onclick: "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"
   end
+
+  def favorites_link
+    if user_signed_in?
+      link_to("Favorites", "/favorites", class: "btn btn-default")
+    end
+  end
 end
