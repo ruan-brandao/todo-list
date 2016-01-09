@@ -11,4 +11,12 @@ class Task < ActiveRecord::Base
   def close_subtasks
     subtasks.update_all(done: true)
   end
+
+  def subtasks_completed?
+    subtasks.all?(&:done) && subtasks.count > 0
+  end
+
+  def complete_by_subtasks
+    update(done: true) if subtasks_completed?
+  end
 end

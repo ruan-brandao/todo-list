@@ -38,7 +38,10 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
-      @list.tasks.each { |task| task.close_subtasks if task.done }
+      @list.tasks.each do |task|
+        task.complete_by_subtasks
+        task.close_subtasks if task.done
+      end
       redirect_to @list
     else
       render :edit
