@@ -7,4 +7,8 @@ class Task < ActiveRecord::Base
                                 allow_destroy: true
 
   validates :text, presence: true
+
+  def close_subtasks
+    subtasks.update_all(done: true)
+  end
 end

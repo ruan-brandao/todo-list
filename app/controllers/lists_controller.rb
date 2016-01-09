@@ -38,6 +38,7 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
+      @list.tasks.each { |task| task.close_subtasks if task.done }
       redirect_to @list
     else
       render :edit
