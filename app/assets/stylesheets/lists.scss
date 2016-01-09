@@ -11,6 +11,16 @@
   font-size: 22px;
 }
 
-.task {
+.task-edit {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.task,
+.subtask {
   margin-bottom: 5px;
+}
+
+.subtasks {
+  margin: 5px 5px 5px 50px;
 }

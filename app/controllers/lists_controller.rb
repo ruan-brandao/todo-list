@@ -16,7 +16,8 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.tasks.build
+    task = @list.tasks.build
+    task.subtasks.build
   end
 
   def create
@@ -31,7 +32,8 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list.tasks.build
+    task = @list.tasks.build
+    task.subtasks.build
   end
 
   def update
@@ -71,7 +73,7 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :public, tasks_attributes: [:id, :text, :done, :_destroy])
+    params.require(:list).permit(:name, :public, tasks_attributes: [:id, :text, :done, :_destroy, subtasks_attributes: [:id, :text, :done, :_destroy]])
   end
 
   def check_owner

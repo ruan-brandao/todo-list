@@ -1,7 +1,14 @@
-<div class="task">
+<div class="task-edit">
   <%= f.label :done %>
   <%= f.check_box :done %>
   <%= f.text_field :text, placeholder: "Task" %>
   <%= f.check_box :_destroy, class: "hidden" %>
   <a class="destroy-task btn btn-danger">Destroy Task</a>
+
+  <div class="subtasks">
+    <%= f.fields_for :subtasks do |subtask| %>
+      <%= render "subtask", f: subtask %>
+    <% end %>
+    <p><%= link_to_add_fields "Add Subtask", f, :subtasks %></p>
+  </div>
 </div>
