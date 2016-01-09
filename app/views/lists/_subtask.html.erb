@@ -1,0 +1,7 @@
+<div class="subtask">
+  <%= f.label :done %>
+  <%= f.check_box :done %>
+  <%= f.text_field :text, placeholder: "Subtask" %>
+  <%= f.check_box :_destroy, class: "hidden" %>
+  <a class="destroy-task btn btn-danger">Destroy Subtask</a>
+</div>
