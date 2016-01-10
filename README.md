@@ -3,12 +3,14 @@
 
 ## Dependencies
 This project has the following dependencies:
+
 * Ruby 2.2.2
 * Rails 4.2.4
 * PhantomJS 1.9.8 (used on the feature specs)
 
 ## Setup the project
-To run the project, do the following steps
+To run the project, do the following steps:
+
 1. Install the dependencies above
 2. `$ git clone <REPOSITORY_URL> todo-list` - Clone the repository
 3. `$ cd todo-list` - Go into the project directory
